@@ -1,61 +1,36 @@
 import React, { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
-const CreateTask = () => {
+const ViewUpdateTask = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [assignedTo, setAssignedTo] = useState("");
-  const [priority, setPriority] = useState("");
-
+  const [title, setTitle] = useState(location.state?.task?.title || "");
+  const [description, setDescription] = useState(
+    location.state?.task?.description || ""
+  );
+  const [dueDate, setDueDate] = useState(
+    location.state?.task?.dueDate.substring(0, 10) || ""
+  );
+  const [priority, setPriority] = useState(
+    location.state?.task?.priority || ""
+  );
+  const [assignedTo, setAssignedTo] = useState(
+    location.state?.task?.assignedTo || ""
+  );
   const [users, setUsers] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!title || !description || !dueDate || !assignedTo || !priority) {
-      toast.error("Please fill all the fields");
-      return;
-    }
-    try {
-      const response = await fetch("http://127.0.0.1:5000/api/task/create", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title,
-          description,
-          dueDate,
-          assignedTo,
-          priority,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.ok) {
-        handleReset();
-        toast.success(data.message);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      console.log("error in create task");
-    }
-  };
+  const taskId = useParams().id;
 
   const handleReset = () => {
     setTitle("");
     setDescription("");
     setDueDate("");
-    setAssignedTo("");
     setPriority("");
+    setAssignedTo("");
   };
 
   useEffect(() => {
@@ -78,6 +53,55 @@ const CreateTask = () => {
     }
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!title || !description || !dueDate || !priority || !assignedTo) {
+      toast.error("Please fill all the fields");
+      return;
+    }
+    if (
+      title === location.state?.task?.title &&
+      description === location.state?.task?.description &&
+      dueDate === location.state?.task?.dueDate.substring(0, 10) &&
+      priority === location.state?.task?.priority &&
+      assignedTo === location.state?.task?.assignedTo
+    ) {
+      toast.error("No changes made to the task");
+      return;
+    }
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/task/update/${taskId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            description,
+            dueDate,
+            priority,
+            assignedTo,
+          }),
+          credentials: "include",
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.ok) {
+        toast.success(data.message);
+        handleReset();
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 2000);
+      }
+    } catch (error) {
+      console.log("error updating task");
+    }
+  };
+
   const priorityOptions = [
     { value: "high", label: "High" },
     { value: "medium", label: "Medium" },
@@ -86,7 +110,7 @@ const CreateTask = () => {
 
   return (
     <div className="main">
-      <h1>Create Task</h1>
+      <h1>Task Details</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title:</label>
@@ -97,7 +121,7 @@ const CreateTask = () => {
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter title"
+            placeholder="Enter Task Title"
           />
         </div>
         <div>
@@ -109,7 +133,7 @@ const CreateTask = () => {
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter description"
+            placeholder="Enter Task Description"
           />
         </div>
         <div>
@@ -148,8 +172,15 @@ const CreateTask = () => {
           </div>
         </div>
         <div className="buttonContainer">
-          <button type="submit">Create Task</button>
-          <button onClick={handleReset}>Reset</button>
+          <button type="submit">Update Task</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleReset();
+            }}
+          >
+            Reset
+          </button>
           <button
             onClick={() => {
               navigate("/");
@@ -164,4 +195,4 @@ const CreateTask = () => {
   );
 };
 
-export default CreateTask;
+export default ViewUpdateTask;

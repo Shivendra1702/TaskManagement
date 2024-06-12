@@ -1,0 +1,364 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  color: #192734;
+  font-family: Arial, sans-serif;
+}
+
+input {
+  min-width: 800px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #f4f5f6;
+}
+
+button {
+  width: fit-content;
+  padding: 10px 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #192734;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d1418;
+}
+
+.main {
+  padding: 15px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1em;
+  border: #898d90 1px solid;
+  border-radius: 5px;
+}
+
+.main h1 {
+  border-bottom: #192734 1px solid;
+}
+
+.main form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.home .header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  padding: 10px 15px;
+  /* flex:1; */
+}
+
+.home .tasks {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1em;
+  padding: 10px;
+  flex: 1;
+}
+
+.home .tasks .p {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 1em;
+  align-items: center;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 1em;
+  border-radius: 10px;
+  height: fit-content;
+  height: 100%;
+  padding: 10px;
+}
+
+.hp {
+  background-color: lightcoral;
+  flex: 1;
+}
+.mp {
+  background-color: lightsalmon;
+  flex: 1;
+}
+.lp {
+  background-color: lightyellow;
+  flex: 1;
+}
+
+.home .tasks .p .taskContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 0px 10px;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.home .tasks .p .taskContainer .task {
+  background-color: #f4f5f6;
+  border: #192734 1px solid;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
+  padding: 0px 8px;
+  margin: 8px 0px;
+  position: relative;
+}
+
+.home .tasks .p .taskContainer .task .taskDetail {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.options {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  /* background-color: #192734d4; */
+  right: 40px;
+  top: 40px;
+  z-index: 1;
+  /* gap: 0.6em; */
+  /* border-radius: 5px; */
+  min-width: 150px;
+  padding: 2px 4px;
+
+  backdrop-filter: blur(9px) saturate(150%);
+  -webkit-backdrop-filter: blur(11px) saturate(177%);
+  background-color: #192734d4;
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.options span {
+  width: 100%;
+  cursor: pointer;
+  color: #ffffff;
+  border-bottom: #192734 1px solid;
+  padding: 8px;
+}
+
+.options span:hover {
+  background-color: #192734;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #192734;
+}
+
+select {
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #f4f5f6;
+}
+option {
+  padding: 10px 15px;
+  margin: 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #f4f5f6;
+}
+
+.task-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.task-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.task-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.task-label {
+  font-weight: bold;
+  color: #555;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.task-value {
+  color: #777;
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.task-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #777;
+  font-family: inherit;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  cursor: pointer;
+}
+
+.userNameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border: #192734 2px solid;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #f4f5f6;
+  font-weight: bold;
+}
+
+.dropdown {
+  border-radius: 1em;
+  border: 1px solid #ccc;
+  background-color: #f4f5f6;
+  margin: 0.4em 0em;
+}
+.selectContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.dailogPage {
+  position: absolute;
+  background-color: #19273459;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialogBox {
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+
+  backdrop-filter: blur(5px) saturate(151%);
+  -webkit-backdrop-filter: blur(5px) saturate(151%);
+  background-color: rgba(255, 255, 255, 0.53);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+
+  border: 1px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #ff1100;
+}

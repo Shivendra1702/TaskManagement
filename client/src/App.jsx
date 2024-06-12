@@ -4,24 +4,23 @@ import {
   Home,
   Login,
   Register,
-  SpecificTask,
-  UpdateTask,
+  ViewUpdateTask,
 } from "./views";
+import "./App.css";
 
 function App() {
   return (
-    <>
+    <div className="app">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/create" element={<CreateTask />} />
-          <Route path="/update/:id" element={<UpdateTask />} />
-          <Route path="/:id" element={<SpecificTask />} />
+          <Route path="/task/:id" element={<ViewUpdateTask />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 
