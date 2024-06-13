@@ -11,8 +11,8 @@
   width: 100vw;
   height: 100vh;
   background-color: #ffffff;
-  color: #192734;
-  font-family: Arial, sans-serif;
+  color: #192734c0;
+  font-family: 'Roboto', sans-serif;
 }
 
 input {
@@ -143,7 +143,7 @@ button:hover {
 
 .home .tasks .p .taskContainer .task {
   background-color: #f4f5f6;
-  border: #192734 1px solid;
+  border: #808080 1.2px solid;
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -154,6 +154,8 @@ button:hover {
   padding: 0px 8px;
   margin: 8px 0px;
   position: relative;
+
+  font-weight: bold;
 }
 
 .home .tasks .p .taskContainer .task .taskDetail {
@@ -161,11 +163,27 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  font-size: 0.9em;
-  font-weight: bold;
+  flex-direction: column;
+  /* font-size: 0.9em; */
+  /* font-weight: ;  */
+  gap: 4px;
+  padding: 8px;
 }
 
+.r1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: large;
+  color: #555;
+}
+.r2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
 .options {
   position: absolute;
   display: flex;
@@ -361,4 +379,29 @@ option {
 
 .delete-button:hover {
   background-color: #ff1100;
+}
+
+.pending {
+  color: #f44336;
+  font-size: small;
+}
+.completed {
+  color: #4caf50;
+  font-size: small;
+}
+
+textarea {
+  min-width: 800px;
+  /* width: 100%; */
+  max-width: 800px;
+  min-height: 80px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  outline: none;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #f4f5f6;
 }

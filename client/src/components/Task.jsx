@@ -61,21 +61,31 @@ const Task = ({ task }) => {
     <>
       <div className="task">
         <div className="taskDetail">
-          <span>
-            {task.title.length > 20
-              ? task.title.substring(0, 20) + "..."
-              : task.title}
-          </span>
-          <span>
-            {new Date(task.dueDate).toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "2-digit",
-              year: "2-digit",
-            })}
-          </span>
-          <span>{task.status == "pending" ? "Pending" : "Completed"}</span>
+          <div className="r1">
+            <span>
+              {task.title.length > 20
+                ? task.title.substring(0, 20) + "..."
+                : task.title}
+            </span>
+          </div>
+          <div className="r2">
+            <span
+              className={`${
+                task.status == "pending" ? "pending" : "completed"
+              }`}
+            >
+              {task.status == "pending" ? "Pending" : "Completed"}
+            </span>
+          </div>
         </div>
-        <div className="optionButtonContainer">
+        <div className="buttonContainer">
+        <span>
+              {new Date(task.dueDate).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "2-digit",
+              })}
+            </span>
           <button onClick={() => setShowOptions(!showOptions)}>options</button>
         </div>
         {showOptions && (

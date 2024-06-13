@@ -18,6 +18,8 @@ app.use(
   })
 );
 
+// User routes
+
 app.post("/api/user/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -117,6 +119,9 @@ app.get("/api/user/:token", async (req, res) => {
   }
 });
 
+
+// Task routes
+
 app.post("/api/task/create", async (req, res) => {
   try {
     const { title, description, dueDate, assignedTo, priority } = req.body;
@@ -141,7 +146,6 @@ app.post("/api/task/create", async (req, res) => {
   }
 });
 
-//we want to show all tasks only to the admin , and only the tasks assigned to the user to the user
 app.get("/api/tasks", async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -201,6 +205,8 @@ app.delete("/api/task/delete/:id", async (req, res) => {
     console.log("error deleting task");
   }
 });
+
+
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");

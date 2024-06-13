@@ -127,13 +127,13 @@ const ViewUpdateTask = () => {
         <div>
           <label htmlFor="description">Description:</label>
           <br />
-          <input
+          <textarea
             type="text"
             id="description"
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter Task Description"
+            placeholder="Enter description"
           />
         </div>
         <div>
